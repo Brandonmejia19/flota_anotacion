@@ -103,12 +103,12 @@ class BosemResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('nombre')
+                    ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('tel_lineafija')
                     ->label('Teléfono Fijo')
                     ->prefix('(+503) ')
                     ->sortable(),
-
                 Tables\Columns\TextColumn::make('tel_movil')
                     ->label('Teléfono Movil')
                     ->prefix('(+503) ')
@@ -137,9 +137,7 @@ class BosemResource extends Resource
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+             
             ]);
     }
 

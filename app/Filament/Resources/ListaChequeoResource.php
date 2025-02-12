@@ -152,7 +152,6 @@ class ListaChequeoResource extends Resource
                                         ->placeholder('Observaciones')
                                         ->columnSpan(2)
                                         ->label('Observaciones'),
-
                                 ])
                                 ->addable(false)
                                 ->reorderable(false)
@@ -292,6 +291,7 @@ class ListaChequeoResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('fecha')
+                ->searchable()
                     ->date()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
@@ -310,9 +310,7 @@ class ListaChequeoResource extends Resource
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+               
             ]);
     }
 

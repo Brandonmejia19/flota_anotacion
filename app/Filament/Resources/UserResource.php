@@ -14,6 +14,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Model;
 
 class UserResource extends Resource
 {
@@ -37,16 +38,17 @@ class UserResource extends Resource
                             Forms\Components\TextInput::make('user')
                                 ->required()
                                 ->maxLength(255),
+                            Forms\Components\Select::make('roles')->multiple()->relationship('roles', 'name'),
                             Forms\Components\TextInput::make('email')
                                 ->email()
+                                ->default('Visor')
                                 ->required()
                                 ->maxLength(255),
                             Forms\Components\DateTimePicker::make('email_verified_at'),
-                            Forms\Components\TextInput::make('password')
-                                ->password()
-                                ->required()
-                                ->dehydrateStateUsing(fn(string $state): string => Hash::make($state))
-                                ->maxLength(255),
+                            /* Forms\Components\TextInput::make('password')
+                                 ->password()
+                                 ->dehydrateStateUsing(fn(string $state): string => Hash::make($state))
+                                 ->maxLength(255),*/
                             Forms\Components\Textarea::make('two_factor_secret')
                                 ->columnSpanFull(),
                             Forms\Components\Textarea::make('two_factor_recovery_codes')
@@ -65,13 +67,17 @@ class UserResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->placeholder('Vacío')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('user')
+                    ->placeholder('Vacío')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
+                    ->placeholder('Vacío')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email_verified_at')
                     ->dateTime()
+                    ->toggleable(isToggledHiddenByDefault: true)
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -83,9 +89,12 @@ class UserResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('two_factor_confirmed_at')
                     ->dateTime()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('two_factor_type')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+
             ])
             ->filters([
                 //
@@ -94,9 +103,7 @@ class UserResource extends Resource
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+               
             ]);
     }
 

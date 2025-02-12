@@ -13,9 +13,11 @@ return [
 
     'navigation_section_group' => 'filament-spatie-roles-permissions::filament-spatie.section.roles_and_permissions', // Default uses language constant
 
-    'team_model' => \App\Models\Team::class,
+    //'team_model' => \App\Models\Team::class,
 
     'scope_to_tenant' => true,
+
+    'super_admin_role_name' => 'Super Admin',
 
     /*
      * Set as false to remove from navigation.
@@ -55,6 +57,15 @@ return [
             'after_create' => false,
             'after_edit' => false
         ],
+    ],
+
+    /**
+     * Set to true to display relation managers in the resources
+     */
+    'should_display_relation_managers' => [
+        'permissions' => true,
+        'users' => true,
+        'roles' => true,
     ],
 
     /*
@@ -104,7 +115,7 @@ return [
      * }
      *
      */
-    'user_name_searchable_columns' => 'name',
+    'user_name_searchable_columns' => ['name'],
 
     /*
      * Icons to use for navigation

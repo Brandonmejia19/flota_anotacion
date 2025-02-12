@@ -4,6 +4,7 @@ namespace Joaopaulolndev\FilamentEditProfile\Livewire;
 
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
@@ -42,24 +43,52 @@ class EditProfileForm extends BaseProfileForm
                         FileUpload::make(config('filament-edit-profile.avatar_column', 'avatar_url'))
                             ->label(__('filament-edit-profile::default.avatar'))
                             ->directory('avatars') // Guardará en storage/app/public/avatars
-                            ->image()
-                            ->previewable(true)
-                            ->imageEditor()->visibility('public')
-                            ->disk('public') // Asegúrate de que esto apunte al disco 'public'
                             ->deletable(true)
-                        //   ->visibility(config('filament-edit-profile.visibility', 'public')),
-                        ,
+                            // ->avatar()
+                            ->downloadable()
+                            ->avatar()
+                            ->previewable(true)
+                            ->imageEditor()
+                            ->disk('public') // Asegúrate de que esto apunte al disco 'public'
+                            ->visibility('public')
+                            ->previewable(true),                        //   ->visibility(config('filament-edit-profile.visibility', 'public')),
                         TextInput::make('name')
                             ->readonly()
+                            ->placeholder('Ingrese su nombre completo')
+                            ->prefixicon('heroicon-o-user')
+                            ->columnSpanFull()
                             ->label(__('filament-edit-profile::default.name'))
                             ->required(),
                         TextInput::make('email')
                             ->label(__('filament-edit-profile::default.email'))
                             ->readonly()
+                            ->prefixicon('heroicon-o-envelope')
                             ->email()
+                            ->placeholder('ejemplo@salud.gob.sv')
                             ->required()
                             ->unique($this->userClass, ignorable: $this->user),
-                    ]),
+                        TextInput::make('dui')
+                            ->numeric()
+                            ->placeholder('Ejemplo: 00000000-0')
+                            ->prefixicon('heroicon-o-identification')
+                            ->label('DUI')
+                            ->required(),
+                        TextInput::make('telefono')
+                            ->numeric()
+                            ->placeholder('Ejemplo: 7777-7777')
+                            ->prefixicon('heroicon-o-phone')
+                            ->label('Teléfono')
+                            ->required(),
+                        Select::make('cargo')
+                            ->prefixicon('heroicon-o-briefcase')
+                            ->options([
+                                'Administrador' => 'Administrador',
+                                'Empleado' => 'Empleado',
+                                'Cliente' => 'Cliente',
+                            ])
+                            ->label('Cargo')
+                            ->required(),
+                    ])->columns(2),
             ])
             ->statePath('data');
     }

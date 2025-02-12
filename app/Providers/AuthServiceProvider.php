@@ -2,8 +2,15 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
+use Althinect\FilamentSpatieRolesPermissions\Commands\Permission as CommandsPermission;
+use Illuminate\Support\Facades\Gate;
+use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Models\Role;
+use App\Models\Permission;
+use App\Policies\PermissionPolicy;
+use App\Policies\RolePolicy;
+use Spatie\Permission\Models\Role as ModelsRole;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -22,7 +29,11 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->registerPolicies();
-
+        Gate::before(function (User $user, string $ability) {
+            return $user->isSuperAdmin() ? true : null;
+        });
+        Gate::policy(ModelsRole::class, RolePolicy::class);
+        Gate::policy(\Spatie\Permission\Models\Permission::class, PermissionPolicy::class);
         //
     }
 }

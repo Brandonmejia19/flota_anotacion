@@ -184,7 +184,6 @@ class ComposerStaticInitbfe12996eeecb6fdc8713a9fd9d431f8
         'N' => 
         array (
             'NunoMaduro\\Collision\\' => 21,
-            'Njxqlus\\FilamentProgressbar\\' => 28,
         ),
         'M' => 
         array (
@@ -698,10 +697,6 @@ class ComposerStaticInitbfe12996eeecb6fdc8713a9fd9d431f8
         array (
             0 => __DIR__ . '/..' . '/nunomaduro/collision/src',
         ),
-        'Njxqlus\\FilamentProgressbar\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/njxqlus/filament-progressbar/src',
-        ),
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
@@ -1134,6 +1129,15 @@ class ComposerStaticInitbfe12996eeecb6fdc8713a9fd9d431f8
         'App\\Models\\ListaChequeo' => __DIR__ . '/../..' . '/app/Models/ListaChequeo.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Models\\bosem' => __DIR__ . '/../..' . '/app/Models/bosem.php',
+        'App\\Policies\\AmbulanciaPolicy' => __DIR__ . '/../..' . '/app/Policies/AmbulanciaPolicy.php',
+        'App\\Policies\\CuponPolicy' => __DIR__ . '/../..' . '/app/Policies/CuponPolicy.php',
+        'App\\Policies\\ElementosambPolicy' => __DIR__ . '/../..' . '/app/Policies/ElementosambPolicy.php',
+        'App\\Policies\\HerramientasambPolicy' => __DIR__ . '/../..' . '/app/Policies/HerramientasambPolicy.php',
+        'App\\Policies\\ListaChequeoPolicy' => __DIR__ . '/../..' . '/app/Policies/ListaChequeoPolicy.php',
+        'App\\Policies\\PermissionPolicy' => __DIR__ . '/../..' . '/app/Policies/PermissionPolicy.php',
+        'App\\Policies\\RolePolicy' => __DIR__ . '/../..' . '/app/Policies/RolePolicy.php',
+        'App\\Policies\\UserPolicy' => __DIR__ . '/../..' . '/app/Policies/UserPolicy.php',
+        'App\\Policies\\bosemPolicy' => __DIR__ . '/../..' . '/app/Policies/bosemPolicy.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
@@ -6858,8 +6862,6 @@ class ComposerStaticInitbfe12996eeecb6fdc8713a9fd9d431f8
         'Nette\\Utils\\Type' => __DIR__ . '/..' . '/nette/utils/src/Utils/Type.php',
         'Nette\\Utils\\UnknownImageFileException' => __DIR__ . '/..' . '/nette/utils/src/Utils/exceptions.php',
         'Nette\\Utils\\Validators' => __DIR__ . '/..' . '/nette/utils/src/Utils/Validators.php',
-        'Njxqlus\\FilamentProgressbar\\FilamentProgressbarPlugin' => __DIR__ . '/..' . '/njxqlus/filament-progressbar/src/FilamentProgressbarPlugin.php',
-        'Njxqlus\\FilamentProgressbar\\FilamentProgressbarServiceProvider' => __DIR__ . '/..' . '/njxqlus/filament-progressbar/src/FilamentProgressbarServiceProvider.php',
         'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
         'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider' => __DIR__ . '/..' . '/nunomaduro/collision/src/Adapters/Laravel/CollisionServiceProvider.php',
         'NunoMaduro\\Collision\\Adapters\\Laravel\\Commands\\TestCommand' => __DIR__ . '/..' . '/nunomaduro/collision/src/Adapters/Laravel/Commands/TestCommand.php',

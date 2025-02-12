@@ -28,6 +28,7 @@ use Swis\Filament\Backgrounds\FilamentBackgroundsPlugin;
 use Swis\Filament\Backgrounds\ImageProviders\MyImages;
 use Vormkracht10\TwoFactorAuth\TwoFactorAuthPlugin;
 use Joaopaulolndev\FilamentEditProfile\FilamentEditProfilePlugin;
+use Althinect\FilamentSpatieRolesPermissions\FilamentSpatieRolesPermissionsPlugin;
 
 class FlotaPanelProvider extends PanelProvider
 {
@@ -71,7 +72,7 @@ class FlotaPanelProvider extends PanelProvider
                     ->setIcon('heroicon-o-user')
                     ->shouldShowDeleteAccountForm(false)
                     ->shouldShowAvatarForm(false),
-
+                FilamentSpatieRolesPermissionsPlugin::make(),
                 //   TwoFactorAuthPlugin::make(),
             ])
             ->brandLogo(asset('images/logo222.svg'))

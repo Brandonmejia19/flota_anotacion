@@ -261,7 +261,7 @@ class Permission extends Command
     private function getModelReflections($array): array
     {
         return array_map(function ($classes) {
-            return new \ReflectionClass($classes);
+            return new ReflectionClass($classes);
         }, $array);
     }
 

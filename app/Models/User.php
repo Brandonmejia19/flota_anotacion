@@ -14,9 +14,12 @@ use Vormkracht10\TwoFactorAuth\Enums\TwoFactorType;
 use LdapRecord\Laravel\Auth\LdapAuthenticatable;
 use Filament\Models\Contracts\HasAvatar;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Permission\Traits\HasRoles;
+use Althinect\FilamentSpatieRolesPermissions\Concerns\HasSuperAdmin;
+
 class User extends Authenticatable implements FilamentUser,LdapAuthenticatable,HasAvatar
 {
-    use HasApiTokens, HasFactory, Notifiable, TwoFactorAuthenticatable,AuthenticatesWithLdap;
+    use HasApiTokens, HasFactory, Notifiable, TwoFactorAuthenticatable,AuthenticatesWithLdap, HasRoles,HasSuperAdmin;
 
     /**
      * The attributes that are mass assignable.
@@ -32,6 +35,9 @@ class User extends Authenticatable implements FilamentUser,LdapAuthenticatable,H
         'domain',
         'avatar_url',
         'foto',
+        'dui',
+        'telefono',
+        'cargo',
     ];
     public function getFilamentAvatarUrl(): ?string
     {
