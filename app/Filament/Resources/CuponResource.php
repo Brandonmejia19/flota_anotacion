@@ -20,7 +20,7 @@ class CuponResource extends Resource
     protected static ?string $label = 'Cupones Usado';
     protected static ?string $navigationLabel = 'Cupones';
 
-    protected static ?string $navigationGroup = 'Flota';
+    protected static ?string $navigationGroup = 'Desplegable';
     protected static ?string $navigationIcon = 'heroicon-o-ticket';
 
     public static function form(Form $form): Form
@@ -64,7 +64,7 @@ class CuponResource extends Resource
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                
+
             ]);
     }
 

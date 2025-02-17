@@ -29,6 +29,7 @@ use Swis\Filament\Backgrounds\ImageProviders\MyImages;
 use Vormkracht10\TwoFactorAuth\TwoFactorAuthPlugin;
 use Joaopaulolndev\FilamentEditProfile\FilamentEditProfilePlugin;
 use Althinect\FilamentSpatieRolesPermissions\FilamentSpatieRolesPermissionsPlugin;
+use Vormkracht10\TwoFactorAuth\Http\Livewire\Auth\Login;
 
 class FlotaPanelProvider extends PanelProvider
 {
@@ -40,9 +41,6 @@ class FlotaPanelProvider extends PanelProvider
             ->path('flota')
             ->sidebarWidth('15rem')
             ->default()
-            /*  ->emailVerification()
-              ->registration()*/
-            ->passwordReset()
             ->sidebarCollapsibleOnDesktop()
             ->sidebarFullyCollapsibleOnDesktop()
             ->login()
@@ -73,7 +71,8 @@ class FlotaPanelProvider extends PanelProvider
                     ->shouldShowDeleteAccountForm(false)
                     ->shouldShowAvatarForm(false),
                 FilamentSpatieRolesPermissionsPlugin::make(),
-                //   TwoFactorAuthPlugin::make(),
+         /*       TwoFactorAuthPlugin::make()
+                ->forced(),*/
             ])
             ->brandLogo(asset('images/logo222.svg'))
             ->favicon(asset('images/logocheques.svg'))

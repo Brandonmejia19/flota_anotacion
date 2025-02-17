@@ -47,7 +47,7 @@ class LoginTwoFactor extends Page implements HasActions, HasForms
             $this->twoFactorType = $this->challengedUser->two_factor_type?->value ?? TwoFactorType::email->value;
 
             if (! Cache::has('resend_cooldown_' . $this->challengedUser->id)) {
-                Cache::put('resend_cooldown_' . $this->challengedUser->id, true, now()->addSeconds(30));
+                Cache::put('resend_cooldown_' . $this->challengedUser->id, true, now()->addSeconds(5));
             }
         }
     }
@@ -86,7 +86,7 @@ class LoginTwoFactor extends Page implements HasActions, HasForms
 
         $this->challengedUser->notify(app(SendOTP::class));
 
-        Cache::put('resend_cooldown_' . $this->challengedUser->id, true, now()->addSeconds(30));
+        Cache::put('resend_cooldown_' . $this->challengedUser->id, true, now()->addSeconds(5));
 
         $this->dispatch('resent');
 

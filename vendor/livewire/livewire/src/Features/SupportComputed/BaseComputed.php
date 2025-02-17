@@ -42,7 +42,7 @@ class BaseComputed extends Attribute
     protected function handleMagicGet($target, $property, $returnValue)
     {
         if ($target !== $this->component) return;
-        if ($this->generatePropertyName($property) !== $this->getName()) return;
+        if ($property !== $this->getName()) return;
 
         if ($this->persist) {
             $returnValue($this->handlePersistedGet());
@@ -121,8 +121,6 @@ class BaseComputed extends Attribute
 
     protected function generatePersistedKey()
     {
-        if ($this->key) return $this->key;
-
         return 'lw_computed.'.$this->component->getId().'.'.$this->getName();
     }
 
@@ -135,18 +133,6 @@ class BaseComputed extends Attribute
 
     protected function evaluateComputed()
     {
-        return invade($this->component)->{parent::getName()}();
+        return invade($this->component)->{$this->getName()}();
     }
-
-    public function getName()
-    {
-        return $this->generatePropertyName(parent::getName());
-    }
-
-    private function generatePropertyName($value)
-    {
-        return str($value)->camel()->toString();
-    }
-
-
 }

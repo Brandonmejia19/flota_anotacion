@@ -69,13 +69,7 @@ class EloquentCollectionSynth extends Synth {
         // issues and also only restores models that exist.
         $collection = (new $modelClass)->newQueryForRestoration($keys)->useWritePdo()->get();
 
-        $collection = $collection->keyBy->getKey();
-
-        return new $meta['class'](
-            collect($meta['keys'])->map(function ($id) use ($collection) {
-                return $collection[$id] ?? null;
-            })->filter()
-        );
+        return $collection;
     }
 
     function get(&$target, $key) {

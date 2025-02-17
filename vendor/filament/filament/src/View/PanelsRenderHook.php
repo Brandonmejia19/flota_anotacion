@@ -1,5 +1,5 @@
 <?php
-namespace Filament\View;    
+namespace Filament\View;
 class PanelsRenderHook
 {
     const AUTH_LOGIN_FORM_AFTER = 'panels::auth.login.form.after';
@@ -134,3 +134,4 @@ class PanelsRenderHook
 
     const USER_MENU_PROFILE_BEFORE = 'panels::user-menu.profile.before';
 }
+

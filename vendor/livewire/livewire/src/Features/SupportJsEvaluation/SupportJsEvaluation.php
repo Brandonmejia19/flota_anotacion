@@ -5,6 +5,7 @@ namespace Livewire\Features\SupportJsEvaluation;
 use function Livewire\store;
 
 use Livewire\ComponentHook;
+use Illuminate\Support\Facades\Blade;
 
 class SupportJsEvaluation extends ComponentHook
 {

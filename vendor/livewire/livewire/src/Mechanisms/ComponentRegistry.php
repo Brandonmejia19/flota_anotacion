@@ -5,11 +5,21 @@ namespace Livewire\Mechanisms;
 use Livewire\Exceptions\ComponentNotFoundException;
 use Livewire\Component;
 
-class ComponentRegistry extends Mechanism
+class ComponentRegistry
 {
     protected $missingComponentResolvers = [];
     protected $nonAliasedClasses = [];
     protected $aliases = [];
+
+    function register()
+    {
+        app()->singleton($this::class);
+    }
+
+    function boot()
+    {
+        //
+    }
 
     function component($name, $class = null)
     {
@@ -55,7 +65,7 @@ class ComponentRegistry extends Mechanism
 
         $class = $this->generateClassFromName($name);
 
-        if (is_subclass_of($class, Component::class)) {
+        if (class_exists($class) && is_subclass_of($class, Component::class)) {
             return true;
         }
 
@@ -87,7 +97,7 @@ class ComponentRegistry extends Mechanism
         $nameOrClass = is_object($nameComponentOrClass) ? $nameComponentOrClass::class : $nameComponentOrClass;
 
         // If a component class was passed in, use that...
-        if (is_subclass_of($nameOrClass, Component::class)) {
+        if (class_exists($nameOrClass)) {
             $class = $nameOrClass;
         // Otherwise, assume it was a simple name...
         } else {
@@ -169,10 +179,6 @@ class ComponentRegistry extends Mechanism
         $class = collect(str($name)->explode('.'))
             ->map(fn ($segment) => (string) str($segment)->studly())
             ->join('\\');
-
-        if (empty($rootNamespace)) {
-            return $class;
-        }
 
         return '\\' . $rootNamespace . '\\' . $class;
     }

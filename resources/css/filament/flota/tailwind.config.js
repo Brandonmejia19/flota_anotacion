@@ -5,7 +5,7 @@ export default {
     content: [
         './app/Filament/Flota/**/*.php',
         './resources/views/filament/flota/**/*.blade.php',
-        './vendor/filament/**/*.blade.php', './vendor/diogogpinto/filament-auth-ui-enhancer/resources/**/*.blade.php',
+        './vendor/filament/**/*.blade.php',
 
     ],
 }

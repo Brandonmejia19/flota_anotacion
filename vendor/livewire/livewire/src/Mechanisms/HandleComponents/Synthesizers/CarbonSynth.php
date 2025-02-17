@@ -27,10 +27,6 @@ class CarbonSynth extends Synth {
         return false;
     }
 
-    static function matchByType($type) {
-        return is_subclass_of($type, DateTimeInterface::class);
-    }
-
     function dehydrate($target) {
         return [
             $target->format(DateTimeInterface::ATOM),
@@ -38,15 +34,7 @@ class CarbonSynth extends Synth {
         ];
     }
 
-    static function hydrateFromType($type, $value) {
-        if ($value === '' || $value === null) return null;
-
-        return new $type($value);
-    }
-
     function hydrate($value, $meta) {
-        if ($value === '' || $value === null) return null;
-
         return new static::$types[$meta['type']]($value);
     }
 }

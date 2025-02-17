@@ -6,6 +6,8 @@ use ReflectionClass;
 use Livewire\ComponentHook;
 use ReflectionNamedType;
 
+use function Livewire\on;
+
 class SupportFormObjects extends ComponentHook
 {
     public static function provide()

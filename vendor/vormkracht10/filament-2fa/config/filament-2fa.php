@@ -23,7 +23,7 @@ return [
     |
     */
     'options' => [
-        TwoFactorType::authenticator,
+     //   TwoFactorType::authenticator,
         TwoFactorType::email,
         // TwoFactorType::phone,
     ],

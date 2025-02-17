@@ -3,11 +3,10 @@
 namespace Livewire\Mechanisms\ExtendBlade;
 
 use Illuminate\Support\Facades\Blade;
-use Livewire\Mechanisms\Mechanism;
 use function Livewire\invade;
 use function Livewire\on;
 
-class ExtendBlade extends Mechanism
+class ExtendBlade
 {
     protected $directives = [];
     protected $precompilers = [];
@@ -35,8 +34,15 @@ class ExtendBlade extends Mechanism
         return ! empty(static::$livewireComponents);
     }
 
+    function register()
+    {
+        //
+    }
+
     function boot()
     {
+        app()->singleton($this::class, fn () => $this);
+
         Blade::directive('this', fn() => "window.Livewire.find('{{ \$_instance->getId() }}')");
 
         on('render', function ($target, $view) {
@@ -64,21 +70,6 @@ class ExtendBlade extends Mechanism
         // to the handler, and registering custom directives like: "@this".
         app()->make('view.engine.resolver')->register('blade', function () {
             return new ExtendedCompilerEngine(app('blade.compiler'));
-        });
-
-        app()->singleton(DeterministicBladeKeys::class);
-
-        // Reset this singleton between tests and Octane requests...
-        on('flush-state', function () {
-            app()->singleton(DeterministicBladeKeys::class);
-        });
-
-        // We're using "precompiler" as a hook for the point in time when
-        // Laravel compiles a Blade view...
-        app('blade.compiler')->precompiler(function ($value) {
-            app(DeterministicBladeKeys::class)->hookIntoCompile(app('blade.compiler'), $value);
-
-            return $value;
         });
     }
 

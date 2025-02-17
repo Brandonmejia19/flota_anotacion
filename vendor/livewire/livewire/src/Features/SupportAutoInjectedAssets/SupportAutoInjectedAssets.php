@@ -29,10 +29,6 @@ class SupportAutoInjectedAssets extends ComponentHook
             $assetsHead = '';
             $assetsBody = '';
 
-            // If `@assets` has been used outside of a Livewire component then we need
-            // to process those assets to be injected alongside the other assets...
-            SupportScriptsAndAssets::processNonLivewireAssets();
-
             $assets = array_values(SupportScriptsAndAssets::getAssets());
 
             // If there are additional head assets, inject those...
@@ -53,9 +49,7 @@ class SupportAutoInjectedAssets extends ComponentHook
             $html = $handled->response->getContent();
 
             if (str($html)->contains('</html>')) {
-                $originalContent = $handled->response->original;
                 $handled->response->setContent(static::injectAssets($html, $assetsHead, $assetsBody));
-                $handled->response->original = $originalContent;
             }
         });
     }

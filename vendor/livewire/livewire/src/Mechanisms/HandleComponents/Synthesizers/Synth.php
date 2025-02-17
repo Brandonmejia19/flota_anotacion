@@ -44,7 +44,7 @@ abstract class Synth {
         }
 
         if ($method === 'hydrateFromType') {
-            throw new \Exception('You must define a "hydrateFromType" method');
+            throw new \Exception('You must define a "hydrate" method');
         }
 
         if ($method === 'get') {

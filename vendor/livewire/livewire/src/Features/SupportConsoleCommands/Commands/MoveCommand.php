@@ -3,9 +3,7 @@
 namespace Livewire\Features\SupportConsoleCommands\Commands;
 
 use Illuminate\Support\Facades\File;
-use Symfony\Component\Console\Attribute\AsCommand;
 
-#[AsCommand(name: 'livewire:move')]
 class MoveCommand extends FileManipulationCommand
 {
     protected $signature = 'livewire:move {name} {new-name} {--force} {--inline}';
@@ -80,16 +78,12 @@ class MoveCommand extends FileManipulationCommand
         $oldTestPath = $this->parser->testPath();
         $newTestPath = $this->newParser->testPath();
 
-        if (! File::exists($oldTestPath) || File::exists($newTestPath)) {
+        if (!File::exists($oldTestPath) || File::exists($newTestPath)) {
             return false;
         }
 
         $this->ensureDirectoryExists($newTestPath);
-
-        File::put($newTestPath, $this->newParser->testContents());
-
-        File::delete($oldTestPath);
-
+        File::move($oldTestPath, $newTestPath);
         return $newTestPath;
     }
 }

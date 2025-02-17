@@ -21,9 +21,8 @@ class SupportQueryString extends ComponentHook
             $alias = $value['as'] ?? $key;
             $history = $value['history'] ?? true;
             $keep = $value['alwaysShow'] ?? $value['keep'] ?? false;
-            $except = $value['except'] ?? null;
 
-            $this->component->setPropertyAttribute($key, new BaseUrl(as: $alias, history: $history, keep: $keep, except: $except));
+            $this->component->setPropertyAttribute($key, new BaseUrl(as: $alias, history: $history, keep: $keep));
         }
     }
 

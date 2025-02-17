@@ -2,12 +2,11 @@
 
 namespace Livewire\Features\SupportTesting;
 
+use Illuminate\Support\Traits\Macroable;
 use Livewire\Features\SupportFileDownloads\TestsFileDownloads;
 use Livewire\Features\SupportValidation\TestsValidation;
 use Livewire\Features\SupportRedirects\TestsRedirects;
 use Livewire\Features\SupportEvents\TestsEvents;
-use Illuminate\Support\Traits\Macroable;
-use BackedEnum;
 
 /** @mixin \Illuminate\Testing\TestResponse */
 
@@ -26,7 +25,7 @@ class Testable
         protected ComponentState $lastState,
     ) {}
 
-    static function create($name, $params = [], $fromQueryString = [], $cookies = [], $headers = [])
+    static function create($name, $params = [], $fromQueryString = [], $cookies = [])
     {
         $name = static::normalizeAndRegisterComponentName($name);
 
@@ -38,7 +37,6 @@ class Testable
             $params,
             $fromQueryString,
             $cookies,
-            $headers,
         );
 
         return new static($requestBroker, $initialState);
@@ -132,8 +130,6 @@ class Testable
             return $this->upload($name, [$value]);
         } elseif (is_array($value) && isset($value[0]) && $value[0] instanceof \Illuminate\Http\UploadedFile) {
             return $this->upload($name, $value, $isMultiple = true);
-        } elseif ($value instanceof BackedEnum) {
-            $value = $value->value;
         }
 
         return $this->update(updates: [$name => $value]);
@@ -168,11 +164,6 @@ class Testable
         return $this->update();
     }
 
-    function refresh()
-    {
-        return $this->update();
-    }
-
     function update($calls = [], $updates = [])
     {
         $newState = SubsequentRender::make(
@@ -180,7 +171,6 @@ class Testable
             $this->lastState,
             $calls,
             $updates,
-            app('request')->cookies->all()
         );
 
         $this->lastState = $newState;
@@ -191,7 +181,7 @@ class Testable
     /** @todo Move me outta here and into the file upload folder somehow... */
     function upload($name, $files, $isMultiple = false)
     {
-        // This method simulates the calls Livewire's JavaScript
+        // This methhod simulates the calls Livewire's JavaScript
         // normally makes for file uploads.
         $this->call(
             '_startUpload',
@@ -218,14 +208,10 @@ class Testable
             return $this;
         }
 
-        // We are going to encode the original file size, mimeType and hashName in the filename
-        // so when we create a new TemporaryUploadedFile instance we can fake the
-        // same file size, mimeType and hashName set for the original file upload.
+        // We are going to encode the file size in the filename so that when we create
+        // a new TemporaryUploadedFile instance we can fake a specific file size.
         $newFileHashes = collect($files)->zip($fileHashes)->mapSpread(function ($file, $fileHash) {
-            // MimeTypes contain slashes, so we replace them with underscores to ensure the filename is valid.
-            $escapedMimeType = (string) str($file->getMimeType())->replace('/', '_');
-
-            return (string) str($fileHash)->replaceFirst('.', "-hash={$file->hashName()}-mimeType={$escapedMimeType}-size={$file->getSize()}.");
+            return (string) str($fileHash)->replaceFirst('.', "-size={$file->getSize()}.");
         })->toArray();
 
         collect($fileHashes)->zip($newFileHashes)->mapSpread(function ($fileHash, $newFileHash) use ($storage) {
@@ -252,11 +238,6 @@ class Testable
     function instance()
     {
         return $this->lastState->getComponent();
-    }
-
-    function invade()
-    {
-        return \Livewire\invade($this->lastState->getComponent());
     }
 
     function dump()

@@ -29,7 +29,7 @@ class EditProfileForm extends BaseProfileForm
 
         $this->userClass = get_class($this->user);
 
-        $this->form->fill($this->user->only(config('filament-edit-profile.avatar_column', 'avatar_url'), 'name', 'email'));
+        $this->form->fill($this->user->only(config('filament-edit-profile.avatar_column', 'avatar_url'), 'name', 'email','dui','telefono','cargo'));
     }
 
     public function form(Form $form): Form
@@ -37,7 +37,6 @@ class EditProfileForm extends BaseProfileForm
         return $form
             ->schema([
                 Section::make(__('filament-edit-profile::default.profile_information'))
-                    ->aside()
                     ->description(__('Actualiza tu iformación personal.'))
                     ->schema([
                         FileUpload::make(config('filament-edit-profile.avatar_column', 'avatar_url'))

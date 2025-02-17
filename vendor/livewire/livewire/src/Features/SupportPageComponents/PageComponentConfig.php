@@ -40,7 +40,6 @@ class PageComponentConfig
         if (is_subclass_of($view, \Illuminate\View\Component::class)) {
             $layout = app()->makeWith($view, $params);
             $view = $layout->resolveView()->name();
-            $params = array_merge($params, $layout->resolveView()->getData());
         } else {
             $layout = new AnonymousComponent($view, $params);
         }

@@ -35,9 +35,11 @@ class User extends Authenticatable implements FilamentUser,LdapAuthenticatable,H
         'domain',
         'avatar_url',
         'foto',
+        ///
         'dui',
         'telefono',
         'cargo',
+        'two_factor_type'
     ];
     public function getFilamentAvatarUrl(): ?string
     {

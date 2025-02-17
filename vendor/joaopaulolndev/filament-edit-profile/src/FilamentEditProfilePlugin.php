@@ -307,9 +307,9 @@ class FilamentEditProfilePlugin implements Plugin
             $components->put('edit_profile_form', EditProfileForm::class);
         }
 
-        if ($this->shouldShowEditPasswordForm) {
+        /*if ($this->shouldShowEditPasswordForm) {
             $components->put('edit_password_form', EditPasswordForm::class);
-        }
+        }*/
 
         if ($this->getShouldShowDeleteAccountForm()) {
             $components->put('delete_account_form', DeleteAccountForm::class);

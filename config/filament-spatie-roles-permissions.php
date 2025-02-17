@@ -1,4 +1,3 @@
-php artisan vendor:publish --tag="filament-spatie-roles-permissions-translations"
 <?php
 
 return [

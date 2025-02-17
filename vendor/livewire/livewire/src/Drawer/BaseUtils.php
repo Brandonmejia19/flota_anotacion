@@ -2,6 +2,8 @@
 
 namespace Livewire\Drawer;
 
+use ReflectionClass;
+
 class BaseUtils
 {
     static function isSyntheticTuple($payload) {
@@ -77,7 +79,7 @@ class BaseUtils
     }
 
     static function getProperty($target, $property) {
-        return (new \ReflectionObject($target))->getProperty($property);
+        return (new ReflectionClass($target))->getProperty($property);
     }
 
     static function propertyIsTyped($target, $property) {

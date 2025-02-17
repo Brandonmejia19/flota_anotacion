@@ -23,7 +23,7 @@ return [
     |
     */
     'options' => [
-        TwoFactorType::authenticator,
+            // TwoFactorType::authenticator,
         TwoFactorType::email,
         // TwoFactorType::phone,
     ],
@@ -39,7 +39,7 @@ return [
         | This value determines whether users may register in the application.
         |
         */
-        'register' => true,
+        'register' => false,
 
         /*
         |--------------------------------------------------------------------------

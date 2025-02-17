@@ -18,12 +18,6 @@ class SupportLegacyComputedPropertySyntax extends ComponentHook
                 $returnValue(static::getComputedProperty($target, $property));
             }
         });
-
-        on('__unset', function ($target, $property) {
-            if (static::hasComputedProperty($target, $property)) {
-                store($target)->unset('computedProperties', $property);
-            }
-        });
     }
 
     public static function getComputedProperties($target)

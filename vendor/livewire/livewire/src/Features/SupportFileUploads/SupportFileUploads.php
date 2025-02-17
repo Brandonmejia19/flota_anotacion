@@ -13,9 +13,10 @@ class SupportFileUploads extends ComponentHook
     {
         if (app()->runningUnitTests()) {
             // Don't actually generate S3 signedUrls during testing.
-            GenerateSignedUploadUrlFacade::swap(new class extends GenerateSignedUploadUrl {
-                public function forS3($file, $visibility = '') { return []; }
-            });
+            // Can't use ::partialMock because it's not available in older versions of Laravel.
+            $mock = \Mockery::mock(GenerateSignedUploadUrl::class);
+            $mock->makePartial()->shouldReceive('forS3')->andReturn([]);
+            GenerateSignedUploadUrlFacade::swap($mock);
         }
 
         app('livewire')->propertySynthesizer([
@@ -31,9 +32,11 @@ class SupportFileUploads extends ComponentHook
         });
 
         Route::post('/livewire/upload-file', [FileUploadController::class, 'handle'])
-            ->name('livewire.upload-file');
+            ->name('livewire.upload-file')
+            ->middleware('web');
 
         Route::get('/livewire/preview-file/{filename}', [FilePreviewController::class, 'handle'])
-            ->name('livewire.preview-file');
+            ->name('livewire.preview-file')
+            ->middleware('web');
     }
 }

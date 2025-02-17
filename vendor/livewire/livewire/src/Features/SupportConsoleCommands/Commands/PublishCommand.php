@@ -3,9 +3,7 @@
 namespace Livewire\Features\SupportConsoleCommands\Commands;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Attribute\AsCommand;
 
-#[AsCommand(name: 'livewire:publish')]
 class PublishCommand extends Command
 {
     protected $signature = 'livewire:publish
@@ -24,6 +22,7 @@ class PublishCommand extends Command
         } elseif ($this->option('pagination')) {
             $this->publishPagination();
         } else {
+            $this->publishAssets();
             $this->publishConfig();
             $this->publishPagination();
         }

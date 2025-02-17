@@ -48,7 +48,7 @@ class FormObjectSynth extends Synth {
 
     function set(&$target, $key, $value)
     {
-        if ($value === null && Utils::propertyIsTyped($target, $key) && ! Utils::getProperty($target, $key)->getType()->allowsNull()) {
+        if ($value === null && Utils::propertyIsTyped($target, $key)) {
             unset($target->$key);
         } else {
             $target->$key = $value;

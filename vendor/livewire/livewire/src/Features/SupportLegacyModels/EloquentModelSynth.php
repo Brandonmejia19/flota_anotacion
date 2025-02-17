@@ -3,7 +3,6 @@
 namespace Livewire\Features\SupportLegacyModels;
 
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
-use Illuminate\Database\ClassMorphViolationException;
 use Livewire\Mechanisms\HandleComponents\Synthesizers\Synth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -21,13 +20,8 @@ class EloquentModelSynth extends Synth
     {
         $class = $target::class;
 
-        try {
-            // If no alias is found, this just returns the class name
-            $alias = $target->getMorphClass();
-        } catch (ClassMorphViolationException $e) {
-            // If the model is not using morph classes, this exception is thrown
-            $alias = $class;
-        }
+        // If no alias is found, this just returns the class name
+        $alias = $target->getMorphClass();
 
         $meta = [];
 
@@ -62,8 +56,6 @@ class EloquentModelSynth extends Synth
 
     public function hydrate($data, $meta, $hydrateChild)
     {
-        if (! is_iterable($data)) return null;
-
         if (isset($meta['__child_from_parent'])) {
             $model = $meta['__child_from_parent'];
 
@@ -106,10 +98,6 @@ class EloquentModelSynth extends Synth
 
         if ($target->relationLoaded($key)) {
             return $target->setRelation($key, $value);
-        }
-
-        if (array_key_exists($key, $target->getCasts()) && enum_exists($target->getCasts()[$key]) && $value === '') {
-            $value = null;
         }
 
         $target->$key = $value;

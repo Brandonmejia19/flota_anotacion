@@ -27,7 +27,7 @@ class EnumSynth extends Synth {
     }
 
     function hydrate($value, $meta) {
-        if ($value === null || $value === '') return null;
+        if ($value === null) return null;
 
         $class = $meta['class'];
 

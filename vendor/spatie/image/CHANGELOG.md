@@ -2,6 +2,39 @@
 
 All notable changes to `image` will be documented in this file
 
+## 3.7.5 - 2025-01-13
+
+### What's Changed
+
+* PHP 8.4 tests by @erikn69 in https://github.com/spatie/image/pull/277
+* Correct documentation for FillMax in resizing-images.md by @ElGovanni in https://github.com/spatie/image/pull/278
+* Correction: Update basic-usage.md Selecting a driver" section by @PrabalPradhan1991 in https://github.com/spatie/image/pull/280
+* Update basic-usage.md Reverting back the incorrect changes that I suggested by @PrabalPradhan1991 in https://github.com/spatie/image/pull/281
+* Do not remove color profiles when resizing canvas. by @Peeterush in https://github.com/spatie/image/pull/284
+
+### New Contributors
+
+* @ElGovanni made their first contribution in https://github.com/spatie/image/pull/278
+* @Peeterush made their first contribution in https://github.com/spatie/image/pull/284
+
+**Full Changelog**: https://github.com/spatie/image/compare/3.7.4...3.7.5
+
+## 3.7.4 - 2024-10-07
+
+### What's Changed
+
+* Fix broken link by @Synchro in https://github.com/spatie/image/pull/272
+* Update resizing-images.md by @makakken in https://github.com/spatie/image/pull/273
+* Improve DX by specifying namespace for GD functions by @alies-dev in https://github.com/spatie/image/pull/274
+* Fix issue with palette images when saving a webp file using GD.
+
+### New Contributors
+
+* @makakken made their first contribution in https://github.com/spatie/image/pull/273
+* @alies-dev made their first contribution in https://github.com/spatie/image/pull/274
+
+**Full Changelog**: https://github.com/spatie/image/compare/3.7.3...3.7.4
+
 ## 3.7.3 - 2024-08-06
 
 ### What's Changed

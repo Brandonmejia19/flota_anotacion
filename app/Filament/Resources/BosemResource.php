@@ -20,7 +20,7 @@ class BosemResource extends Resource
     protected static ?string $label = 'Bases Operativa';
     protected static ?string $navigationLabel = 'Bases Operativas';
 
-    protected static ?string $navigationGroup = 'Flota';
+    protected static ?string $navigationGroup = 'Desplegable';
     protected static ?string $navigationIcon = 'heroicon-o-home-modern';
 
     public static function form(Form $form): Form
@@ -137,7 +137,7 @@ class BosemResource extends Resource
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-             
+
             ]);
     }
 
