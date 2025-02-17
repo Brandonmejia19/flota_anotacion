@@ -59,5 +59,8 @@ class OptimizeAndClearCache extends Command
 
         Artisan::call('optimize');
         $this->info('Application optimized!');
+
+        Artisan::call('icons:cache');
+        $this->info('Icons optimized!');
     }
 }

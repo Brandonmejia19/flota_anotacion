@@ -13,6 +13,7 @@ use App\Models\Herramientasamb;
 use App\Models\Cupon;
 use App\Filament\Resources\ListaChequeoResource\RelationManagers\ElementosRelationManager;
 use Filament\Forms;
+use Rmsramos\Activitylog\Actions\ActivityLogTimelineTableAction;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -31,6 +32,9 @@ use Illuminate\Support\Facades\Auth;
 use Dotswan\MapPicker\Fields\Map;
 use Closure;
 use Filament\Forms\Components\FileUpload;
+use Filament\Tables\Actions\ActionGroup;
+use App\Filament\Exports\ListaChequeoExporter;
+use Filament\Actions\ExportAction;
 
 class ListaChequeoResource extends Resource
 {
@@ -54,6 +58,7 @@ class ListaChequeoResource extends Resource
                                 Forms\Components\Select::make('ambulancia_id')
                                     ->label('Unidad')
                                     ->required()
+                                    ->prefixicon('healthicons-o-mobile-clinic')
                                     ->live(10)
                                     ->reactive()
                                     ->columnSpan(1)
@@ -70,6 +75,7 @@ class ListaChequeoResource extends Resource
                                 Forms\Components\Select::make('ambulancia_id')
                                     ->label('Placa')
                                     ->required()
+                                    ->prefixicon('healthicons-o-mobile-clinic')
                                     ->live()
                                     ->reactive()
                                     ->columnSpan(1)
@@ -294,6 +300,7 @@ class ListaChequeoResource extends Resource
                                         ->columnSpan(2),
                                     Forms\Components\FileUpload::make('factura_foto')
                                         ->image()
+                                        ->resize(50)
                                         ->label('Fotografía de Facturas')
                                         ->deletable()
                                         ->downloadable()
@@ -320,6 +327,7 @@ class ListaChequeoResource extends Resource
                             Forms\Components\FileUpload::make('daños_foto')
                                 ->image()
                                 ->deletable()
+                                ->resize(50)
                                 ->downloadable()
                                 ->previewable()
                                 ->imageeditor()
@@ -370,6 +378,7 @@ class ListaChequeoResource extends Resource
                             Forms\Components\FileUpload::make('observaciones_fotos')
                                 ->image()
                                 ->deletable()
+                                ->resize(50)
                                 ->disk('public')
                                 ->live()
                                 ->openable()
@@ -402,32 +411,57 @@ class ListaChequeoResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('ambulancia.unidad')
                     ->label('Unidad')
+                    ->icon('healthicons-o-mobile-clinic')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('ambulancia.placa')
                     ->searchable()
+                    ->icon('healthicons-o-mobile-clinic')
                     ->label('Placa')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('kilometraje')
                     ->prefix('KM ')
+                    ->color('primary')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('AEM')
                     ->label('AEM entrega')
+                    ->limit(10)
                     ->searchable()
+                    ->color('success')
+                    ->icon('healthicons-o-health-worker')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('aem_recibe')
                     ->label('AEM Recibe')
+                    ->limit(10)
                     ->searchable()
+                    ->color('danger')
+                    ->icon('healthicons-o-health-worker')
                     ->sortable(),
-                    Tables\Columns\TextColumn::make('nivel_combustible')
+                Tables\Columns\TextColumn::make('nivel_combustible')
                     ->label('AEM Recibe')
-                    ->prefix('% ')
                     ->searchable()
-                    ->sortable(),
+                    ->sortable()
+                    ->formatStateUsing(fn(string $state): string => $state . '%')
+                    ->icon(fn($state) => match (true) {
+                        $state >= 75 => 'heroicon-o-check-circle',  // Ícono verde para niveles altos
+                        $state >= 50 => 'heroicon-o-exclamation-circle',   // Ícono amarillo para niveles medios
+                        default => 'heroicon-o-x-circle',           // Ícono rojo para niveles bajos
+                    })
+                    ->color(fn($state) => match (true) {
+                        $state >= 75 => 'success',
+                        $state >= 50 => 'warning',
+                        default => 'danger',
+                    }),
                 Tables\Columns\TextColumn::make('fecha')
                     ->searchable()
+                    //    ->description(fn(ListaChequeo $record): string => $record->hora)
                     ->date()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('hora')
+                    ->searchable()
+                    //  ->description(fn(ListaChequeo $record): string => $record->hora)
+                    ->time()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -441,10 +475,23 @@ class ListaChequeoResource extends Resource
             ->filters([
                 //
             ])
+
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+                ActionGroup::make([
+                    Tables\Actions\ViewAction::make(),
+                    Tables\Actions\EditAction::make(),
+                    ActivityLogTimelineTableAction::make('Cambios')
+                        ->timelineIcons([
+                            'created' => 'heroicon-m-check-badge',
+                            'updated' => 'heroicon-m-pencil-square',
+                        ])
+                        ->timelineIconColors([
+                            'created' => 'info',
+                            'updated' => 'warning',
+                        ]),
+                ])
             ])
+
             ->bulkActions([
 
             ]);

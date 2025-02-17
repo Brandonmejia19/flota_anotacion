@@ -44,13 +44,13 @@ class ComposerStaticInitbfe12996eeecb6fdc8713a9fd9d431f8
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '2a3c2110e8e0295330dc3d11a4cbc4cb' => __DIR__ . '/..' . '/php-webdriver/webdriver/lib/Exception/TimeoutException.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
+        '72b1e3f4a2af9b30b3f137b3ec2057fc' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/helpers.php',
         '377b22b161c09ed6e5152de788ca020a' => __DIR__ . '/..' . '/spatie/laravel-permission/src/helpers.php',
         '4a1f389d6ce373bda9e57857d3b61c84' => __DIR__ . '/..' . '/barryvdh/laravel-debugbar/src/helpers.php',
         'c72349b1fe8d0deeedd3a52e8aa814d8' => __DIR__ . '/..' . '/mockery/mockery/library/helpers.php',
         'ce9671a430e4846b44e1c68c7611f9f5' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'a1cfe24d14977df6878b9bf804af2d1c' => __DIR__ . '/..' . '/nunomaduro/collision/src/Adapters/Phpunit/Autoload.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
-        '72b1e3f4a2af9b30b3f137b3ec2057fc' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/helpers.php',
         '320163ac6b93aebe3dc25b60a0533d56' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/helpers.php',
     );
 
@@ -155,6 +155,8 @@ class ComposerStaticInitbfe12996eeecb6fdc8713a9fd9d431f8
             'RyanChandler\\BladeCaptureDirective\\' => 35,
             'RuelLuna\\CanvasPointer\\Database\\Factories\\' => 42,
             'RuelLuna\\CanvasPointer\\' => 23,
+            'Rmsramos\\Activitylog\\Database\\Factories\\' => 40,
+            'Rmsramos\\Activitylog\\' => 21,
             'Rappasoft\\LaravelAuthenticationLog\\Database\\Factories\\' => 54,
             'Rappasoft\\LaravelAuthenticationLog\\' => 35,
             'Ramsey\\Uuid\\' => 12,
@@ -219,6 +221,7 @@ class ComposerStaticInitbfe12996eeecb6fdc8713a9fd9d431f8
         ),
         'J' => 
         array (
+            'Joshembling\\ImageOptimizer\\' => 27,
             'Joaopaulolndev\\FilamentEditProfile\\Database\\Factories\\' => 54,
             'Joaopaulolndev\\FilamentEditProfile\\' => 35,
             'Jenssegers\\Agent\\' => 17,
@@ -619,6 +622,14 @@ class ComposerStaticInitbfe12996eeecb6fdc8713a9fd9d431f8
         array (
             0 => __DIR__ . '/..' . '/ruelluna/canvas-pointer/src',
         ),
+        'Rmsramos\\Activitylog\\Database\\Factories\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rmsramos/activitylog/database/factories',
+        ),
+        'Rmsramos\\Activitylog\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rmsramos/activitylog/src',
+        ),
         'Rappasoft\\LaravelAuthenticationLog\\Database\\Factories\\' => 
         array (
             0 => __DIR__ . '/..' . '/rappasoft/laravel-authentication-log/database/factories',
@@ -793,6 +804,10 @@ class ComposerStaticInitbfe12996eeecb6fdc8713a9fd9d431f8
         array (
             0 => __DIR__ . '/..' . '/kirschbaum-development/eloquent-power-joins/src',
         ),
+        'Joshembling\\ImageOptimizer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/joshembling/image-optimizer/src',
+        ),
         'Joaopaulolndev\\FilamentEditProfile\\Database\\Factories\\' => 
         array (
             0 => __DIR__ . '/..' . '/joaopaulolndev/filament-edit-profile/database/factories',
@@ -886,9 +901,9 @@ class ComposerStaticInitbfe12996eeecb6fdc8713a9fd9d431f8
         'Filament\\' => 
         array (
             0 => __DIR__ . '/..' . '/filament/filament/src',
-            1 => __DIR__ . '/..' . '/filament/spatie-laravel-settings-plugin/src',
-            2 => __DIR__ . '/..' . '/filament/spatie-laravel-translatable-plugin/src',
-            3 => __DIR__ . '/..' . '/filament/spatie-laravel-media-library-plugin/src',
+            1 => __DIR__ . '/..' . '/filament/spatie-laravel-media-library-plugin/src',
+            2 => __DIR__ . '/..' . '/filament/spatie-laravel-settings-plugin/src',
+            3 => __DIR__ . '/..' . '/filament/spatie-laravel-translatable-plugin/src',
         ),
         'Faker\\' => 
         array (
@@ -1094,6 +1109,7 @@ class ComposerStaticInitbfe12996eeecb6fdc8713a9fd9d431f8
         'App\\Console\\Commands\\pruebaldap' => __DIR__ . '/../..' . '/app/Console/Commands/pruebaldap.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Filament\\Exports\\ListaChequeoExporter' => __DIR__ . '/../..' . '/app/Filament/Exports/ListaChequeoExporter.php',
         'App\\Filament\\Resources\\AmbulanciaResource' => __DIR__ . '/../..' . '/app/Filament/Resources/AmbulanciaResource.php',
         'App\\Filament\\Resources\\AmbulanciaResource\\Pages\\CreateAmbulancia' => __DIR__ . '/../..' . '/app/Filament/Resources/AmbulanciaResource/Pages/CreateAmbulancia.php',
         'App\\Filament\\Resources\\AmbulanciaResource\\Pages\\EditAmbulancia' => __DIR__ . '/../..' . '/app/Filament/Resources/AmbulanciaResource/Pages/EditAmbulancia.php',
@@ -5170,6 +5186,10 @@ class ComposerStaticInitbfe12996eeecb6fdc8713a9fd9d431f8
         'Joaopaulolndev\\FilamentEditProfile\\Livewire\\SanctumTokens' => __DIR__ . '/..' . '/joaopaulolndev/filament-edit-profile/src/Livewire/SanctumTokens.php',
         'Joaopaulolndev\\FilamentEditProfile\\Pages\\EditProfilePage' => __DIR__ . '/..' . '/joaopaulolndev/filament-edit-profile/src/Pages/EditProfilePage.php',
         'Joaopaulolndev\\FilamentEditProfile\\Testing\\TestsFilamentEditProfile' => __DIR__ . '/..' . '/joaopaulolndev/filament-edit-profile/src/Testing/TestsFilamentEditProfile.php',
+        'Joshembling\\ImageOptimizer\\Components\\BaseFileUpload' => __DIR__ . '/..' . '/joshembling/image-optimizer/src/Components/BaseFileUpload.php',
+        'Joshembling\\ImageOptimizer\\Components\\SpatieMediaLibraryFileUpload' => __DIR__ . '/..' . '/joshembling/image-optimizer/src/Components/SpatieMediaLibraryFileUpload.php',
+        'Joshembling\\ImageOptimizer\\Facades\\ImageOptimizer' => __DIR__ . '/..' . '/joshembling/image-optimizer/src/Facades/ImageOptimizer.php',
+        'Joshembling\\ImageOptimizer\\ImageOptimizerServiceProvider' => __DIR__ . '/..' . '/joshembling/image-optimizer/src/ImageOptimizerServiceProvider.php',
         'Kirschbaum\\PowerJoins\\EloquentJoins' => __DIR__ . '/..' . '/kirschbaum-development/eloquent-power-joins/src/EloquentJoins.php',
         'Kirschbaum\\PowerJoins\\FakeJoinCallback' => __DIR__ . '/..' . '/kirschbaum-development/eloquent-power-joins/src/FakeJoinCallback.php',
         'Kirschbaum\\PowerJoins\\JoinsHelper' => __DIR__ . '/..' . '/kirschbaum-development/eloquent-power-joins/src/JoinsHelper.php',
@@ -8561,6 +8581,20 @@ class ComposerStaticInitbfe12996eeecb6fdc8713a9fd9d431f8
         'Rappasoft\\LaravelAuthenticationLog\\Notifications\\FailedLogin' => __DIR__ . '/..' . '/rappasoft/laravel-authentication-log/src/Notifications/FailedLogin.php',
         'Rappasoft\\LaravelAuthenticationLog\\Notifications\\NewDevice' => __DIR__ . '/..' . '/rappasoft/laravel-authentication-log/src/Notifications/NewDevice.php',
         'Rappasoft\\LaravelAuthenticationLog\\Traits\\AuthenticationLoggable' => __DIR__ . '/..' . '/rappasoft/laravel-authentication-log/src/Traits/AuthenticationLoggable.php',
+        'Rmsramos\\Activitylog\\Actions\\ActivityLogTimelineSimpleAction' => __DIR__ . '/..' . '/rmsramos/activitylog/src/Actions/ActivityLogTimelineSimpleAction.php',
+        'Rmsramos\\Activitylog\\Actions\\ActivityLogTimelineTableAction' => __DIR__ . '/..' . '/rmsramos/activitylog/src/Actions/ActivityLogTimelineTableAction.php',
+        'Rmsramos\\Activitylog\\Actions\\Concerns\\ActionContent' => __DIR__ . '/..' . '/rmsramos/activitylog/src/Actions/Concerns/ActionContent.php',
+        'Rmsramos\\Activitylog\\ActivitylogPlugin' => __DIR__ . '/..' . '/rmsramos/activitylog/src/ActivitylogPlugin.php',
+        'Rmsramos\\Activitylog\\ActivitylogServiceProvider' => __DIR__ . '/..' . '/rmsramos/activitylog/src/ActivitylogServiceProvider.php',
+        'Rmsramos\\Activitylog\\Infolists\\Components\\TimeLineIconEntry' => __DIR__ . '/..' . '/rmsramos/activitylog/src/Infolists/Components/TimeLineIconEntry.php',
+        'Rmsramos\\Activitylog\\Infolists\\Components\\TimeLinePropertiesEntry' => __DIR__ . '/..' . '/rmsramos/activitylog/src/Infolists/Components/TimeLinePropertiesEntry.php',
+        'Rmsramos\\Activitylog\\Infolists\\Components\\TimeLineRepeatableEntry' => __DIR__ . '/..' . '/rmsramos/activitylog/src/Infolists/Components/TimeLineRepeatableEntry.php',
+        'Rmsramos\\Activitylog\\Infolists\\Components\\TimeLineTitleEntry' => __DIR__ . '/..' . '/rmsramos/activitylog/src/Infolists/Components/TimeLineTitleEntry.php',
+        'Rmsramos\\Activitylog\\Infolists\\Concerns\\HasModifyState' => __DIR__ . '/..' . '/rmsramos/activitylog/src/Infolists/Concerns/HasModifyState.php',
+        'Rmsramos\\Activitylog\\RelationManagers\\ActivitylogRelationManager' => __DIR__ . '/..' . '/rmsramos/activitylog/src/RelationManagers/ActivitylogRelationManager.php',
+        'Rmsramos\\Activitylog\\Resources\\ActivitylogResource' => __DIR__ . '/..' . '/rmsramos/activitylog/src/Resources/ActivitylogResource.php',
+        'Rmsramos\\Activitylog\\Resources\\ActivitylogResource\\Pages\\ListActivitylog' => __DIR__ . '/..' . '/rmsramos/activitylog/src/Resources/ActivitylogResource/Pages/ListActivitylog.php',
+        'Rmsramos\\Activitylog\\Resources\\ActivitylogResource\\Pages\\ViewActivitylog' => __DIR__ . '/..' . '/rmsramos/activitylog/src/Resources/ActivitylogResource/Pages/ViewActivitylog.php',
         'RuelLuna\\CanvasPointer\\CanvasPointerPlugin' => __DIR__ . '/..' . '/ruelluna/canvas-pointer/src/CanvasPointerPlugin.php',
         'RuelLuna\\CanvasPointer\\CanvasPointerServiceProvider' => __DIR__ . '/..' . '/ruelluna/canvas-pointer/src/CanvasPointerServiceProvider.php',
         'RuelLuna\\CanvasPointer\\Facades\\CanvasPointer' => __DIR__ . '/..' . '/ruelluna/canvas-pointer/src/Facades/CanvasPointer.php',

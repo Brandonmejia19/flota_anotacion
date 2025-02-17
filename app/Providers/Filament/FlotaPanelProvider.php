@@ -30,6 +30,7 @@ use Vormkracht10\TwoFactorAuth\TwoFactorAuthPlugin;
 use Joaopaulolndev\FilamentEditProfile\FilamentEditProfilePlugin;
 use Althinect\FilamentSpatieRolesPermissions\FilamentSpatieRolesPermissionsPlugin;
 use Vormkracht10\TwoFactorAuth\Http\Livewire\Auth\Login;
+use Rmsramos\Activitylog\ActivitylogPlugin;
 
 class FlotaPanelProvider extends PanelProvider
 {
@@ -57,6 +58,7 @@ class FlotaPanelProvider extends PanelProvider
                 'orange' => Color::Orange,
                 'sidebar' => Color::hex('#fff'),
             ])
+            ->databaseNotifications()
             ->plugins([
                 FilamentBackgroundsPlugin::make()->imageProvider(
                     MyImages::make()
@@ -69,10 +71,19 @@ class FlotaPanelProvider extends PanelProvider
                     ->setNavigationGroup('Mantenimiento')
                     ->setIcon('heroicon-o-user')
                     ->shouldShowDeleteAccountForm(false)
-                    ->shouldShowAvatarForm(false),
+                    ->shouldShowAvatarForm(
+                        value: true,
+                        directory: 'avatars', // image will be stored in 'storage/app/public/avatars
+                        rules: 'mimes:jpeg,png|max:3024' //only accept jpeg and png files with a maximum size of 1MB
+                    ),
                 FilamentSpatieRolesPermissionsPlugin::make(),
-         /*       TwoFactorAuthPlugin::make()
-                ->forced(),*/
+                ActivitylogPlugin::make()->navigationGroup('Mantenimiento')->label('Registro')
+                    ->pluralLabel('Registros')->authorize(
+                        fn() => auth()->user()->cargo === 'Administrador'
+                    ),
+
+                /*       TwoFactorAuthPlugin::make()
+                       ->forced(),*/
             ])
             ->brandLogo(asset('images/logo222.svg'))
             ->favicon(asset('images/logocheques.svg'))
